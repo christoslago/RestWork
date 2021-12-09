@@ -5,4 +5,31 @@
   </PropertyGroup>
 
 
+  <ItemGroup>
+    <None Remove="WorkerData\" />
+    <None Remove="Models\" />
+    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL.Design" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Npgsql" />
+    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
+    <None Remove="Swagger" />
+    <None Remove="Microsoft.AspNetCore.Cors" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WorkerData\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+    <PackageReference Include="Npgsql" Version="4.1.0" />
+    <PackageReference Include="Swagger" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+  </ItemGroup>
 </Project>
