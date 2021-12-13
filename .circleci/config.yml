@@ -1,0 +1,30 @@
+
+version: 2.1
+jobs:
+build:
+docker:
+- image: jetcipher/circleci-dotnet-core:2.2
+steps:
+- setup_remote_docker:
+docker_layer_caching: false
+version: 19.03.14
+- checkout
+#Dotnet restore
+- run:
+name: Restore
+command: dotnet restore
+working_directory: Asp.netCoreMVCCRUD
+#Dotnet build
+- run:
+name: Build
+command: dotnet build -c Release
+working_directory: Asp.netCoreMVCCRUD
+- run:
+name: Build and push Docker image
+command: |
+docker build --tag registry.heroku.com/dotnet-core-crud-app/web Asp.netCoreMVCCRUD
+echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+docker push registry.heroku.com/dotnet-core-crud-app/web
+sudo curl https://cli-assets.heroku.com/install.sh | sh
+HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
+HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release --app dotnet-core-crud-app web
